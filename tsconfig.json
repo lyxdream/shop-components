@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "lib",
+    "jsx": "preserve",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "types/*"
+    ],
+    "paths": {
+      "@cq-shop-componets/*": [
+       "packages/*"
+      ]
+    }
+  },
+  "include": [
+    "./examples", 
+    "./config",
+    "./types", 
+    "./build",
+    "./packages/**/*.ts",
+    "./packages/**/*.vue"
+     ],
+  "compileOnSave": true,
+  "exclude": [
+    "node_modules/*",
+    "dist"
+  ]
+}

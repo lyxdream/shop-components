@@ -1,0 +1,81 @@
+{
+  "name": "cq-shop-components",
+  "version": "1.0.0",
+  "private": true,
+  "description": "电商组件库",
+  "main": "lib/index.js",
+  "source": "packages/index.ts",
+  "typings": "types/index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "types"
+  ],
+  "author": "yinxia",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.xxxxx.com:front/xxxxxx.git"
+  },
+  "publishConfig": {
+    "registry": "http://registry-cnpm.xxxx.com/"
+  },
+  "license": "ISC",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "templateInfo": {
+    "name": "default",
+    "typescript": true,
+    "css": "Sass",
+    "framework": "Vue3"
+  },
+  "scripts": {
+    "dev:weapp": "taro build --type weapp --watch",
+    "build:weapp": "taro build --type weapp",
+    "build:h5": "taro build --type h5",
+    "dev:h5": "npm run build:h5 -- --watch",
+    "test": "jest"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "peerDependencies": {
+    "@tarojs/components": "3.6.35",
+    "@tarojs/taro": "3.6.35",
+    "vue": "^3.2.24"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@babel/runtime": "^7.21.5",
+    "@tarojs/cli": "3.6.35",
+    "@tarojs/helper": "3.6.35",
+    "@tarojs/plugin-framework-vue3": "3.6.35",
+    "@tarojs/plugin-platform-h5": "3.6.35",
+    "@tarojs/plugin-platform-weapp": "3.6.35",
+    "@tarojs/runtime": "3.6.35",
+    "@tarojs/shared": "3.6.35",
+    "@tarojs/taro-loader": "3.6.35",
+    "@tarojs/webpack5-runner": "3.6.35",
+    "@types/node": "^18.15.11",
+    "@types/webpack-env": "^1.13.6",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "@vue/babel-plugin-jsx": "^1.0.6",
+    "@vue/compiler-sfc": "^3.0.0",
+    "babel-preset-taro": "3.6.35",
+    "eslint": "^8.12.0",
+    "eslint-config-taro": "3.6.35",
+    "eslint-plugin-vue": "^8.0.0",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "^5.1.0",
+    "vue-loader": "^17.1.0",
+    "webpack": "5.78.0"
+  },
+  "engines": {
+    "node": ">=18.20.4"
+  }
+}
