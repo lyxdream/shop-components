@@ -39,10 +39,11 @@
     "./build",
     "./packages/**/*.ts",
     "./packages/**/*.vue"
-     ],
+, "packages/index.ts"     ],
   "compileOnSave": true,
   "exclude": [
     "node_modules/*",
-    "dist"
+    "dist",
+    "lib"
   ]
 }

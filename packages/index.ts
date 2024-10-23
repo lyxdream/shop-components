@@ -1,19 +1,21 @@
 import type { App } from 'vue'
-import button from './CqButton/index.vue'
+import CqButton from './cq-button/index'
 
+console.log(CqButton,'==CqButton')
 const components = [
-  button
+  CqButton
 ]
-const install = (app: App) => {
+export const install = (app: App) => {
   for (const key in components) {
     const component = components[key]
     app.component(key, component)
   }
 }
+// export {
+//   CqButton
+// }
 export default {
-  install
+  install,
+  CqButton
 }
 
-export {
-  button
-}

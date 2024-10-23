@@ -1,10 +1,9 @@
 node_modules/
-
 dist/
+lib/
 examplesDist/
 deploy_versions/
 .temp/
 .rn_temp/
-
 .DS_Store
 .swc

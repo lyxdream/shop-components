@@ -2,12 +2,13 @@ import { defineConfig, type UserConfigExport } from '@tarojs/cli'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import devConfig from './dev'
 import prodConfig from './prod'
+import path from 'path'
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge, { command, mode }) => {
   console.log(command, mode,'==command, mode')
   const baseConfig: UserConfigExport = {
-    projectName: 'cq-shop-components',
+    projectName: 'cq-shop-components-demo',
     date: '2024-10-21',
     designWidth: 750,
     deviceRatio: {
@@ -28,7 +29,10 @@ export default defineConfig(async (merge, { command, mode }) => {
       }
     },
     framework: 'vue3',
-    compiler: 'webpack5',
+    // compiler: 'webpack5',
+    compiler: {
+      type: "webpack5"
+    },
     cache: {
       enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
     },
@@ -56,11 +60,14 @@ export default defineConfig(async (merge, { command, mode }) => {
       },
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+        chain.resolve.alias
+          .set('cq-shop-components$', path.resolve(__dirname, '../', 'lib/cq-shop-components.js'))
       }
     },
     h5: {
       publicPath: '/',
       staticDirectory: 'static',
+      esnextModules: ['cq-shop-components'],
       output: {
         filename: 'js/[name].[chunkhash:8].js',
         chunkFilename: 'js/[name].[chunkhash:8].js'
@@ -85,6 +92,8 @@ export default defineConfig(async (merge, { command, mode }) => {
       },
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+        chain.resolve.alias
+          .set('cq-shop-components$', path.resolve(__dirname, '../', 'lib/cq-shop-components.js'))
       }
     }
   }

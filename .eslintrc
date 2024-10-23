@@ -15,14 +15,17 @@
     "node": true
   },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+     "vue"
   ],
   "extends": [
+    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:vue/vue3-recommended",
     "taro/vue3"
   ],
   "rules": {
+    "vue/valid-attribute-name": ["off"],
     // "no-console": process.env.NODE_ENV === "production" ? "warn": "off",
     // "no-debugger": process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // JavaScript/TypeScript 规则
@@ -31,6 +34,7 @@
     "arrow-parens": ["error", "as-needed"], // 箭头函数参数可以省略圆括号
     "@typescript-eslint/explicit-module-boundary-types": "off", // 关闭要求显式模块边界类型的规则
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-var-requires": "off",
     // Vue 规则
     "vue/no-v-html": "off", // 关闭禁止使用 v-html 指令的规则
     "vue/attribute-hyphenation": [
@@ -85,7 +89,7 @@
         "registeredComponentsOnly": false,
         "ignores": [
           // "/^van-/"
-          "/(swiper|swiper-item|scroll-view|web-view|movable-area|movable-view|rich-text|picker)/" // 忽略小程序组件
+          "/(swiper|swiper-item|scroll-view|web-view|movable-area|movable-view|rich-text|picker|cq-button)/" // 忽略小程序组件
         ]
       }
     ],
@@ -105,5 +109,5 @@
         "ignores": []
       }
     ]
-  },
+  }
 }
