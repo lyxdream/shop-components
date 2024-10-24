@@ -23,7 +23,6 @@ module.exports = merge(baseWebpackConfig, {
     publicPath: '/',
     filename: 'cq-shop-components.js',
     library: 'cq-shop-components',
-    libraryTarget: 'umd',
-    globalObject: 'this' // 确保 UMD 构建在不同环境中都能正确运行
+    libraryTarget: 'umd'
   }
 });

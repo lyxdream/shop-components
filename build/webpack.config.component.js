@@ -3,14 +3,13 @@ const path = require('path')
 
 const baseWebpackConfig = require('./webpack.config.base')
 
-// const Components = require('../components.json')
-const Components = {
+const componentsEntries = {
   "cq-button":  path.resolve(__dirname, '../packages/cq-button/index.ts'),
 }
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
-  entry: Components,
+  entry: componentsEntries,
   output: {
     path: path.resolve(process.cwd(), './lib'),
     publicPath: '/',

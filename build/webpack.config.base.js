@@ -3,7 +3,7 @@ const Webpackbar = require('webpackbar');
 const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 
 module.exports = {
-  entry: path.resolve(__dirname, '../packages/index.ts'), // 主入口文件
+  entry: path.resolve(__dirname, '../src/index.ts'), // 主入口文件
   resolve: {
     extensions: ['.js','.ts', '.vue', '.json'], // 添加 .ts 扩展名
     alias: {

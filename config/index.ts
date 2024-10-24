@@ -36,6 +36,9 @@ export default defineConfig(async (merge, { command, mode }) => {
     cache: {
       enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
     },
+    alias: {
+      '@cq-shop-components': path.resolve(__dirname, '..', 'lib/cq-shop-components.js')
+    },
     mini: {
       postcss: {
         pxtransform: {
@@ -60,8 +63,8 @@ export default defineConfig(async (merge, { command, mode }) => {
       },
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
-        chain.resolve.alias
-          .set('cq-shop-components$', path.resolve(__dirname, '../', 'lib/cq-shop-components.js'))
+        // chain.resolve.alias
+        //   .set('cq-shop-components$', path.resolve(__dirname, '../', 'lib/cq-shop-components.js'))
       }
     },
     h5: {

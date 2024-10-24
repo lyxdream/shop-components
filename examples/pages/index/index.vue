@@ -1,20 +1,24 @@
 <template>
   <view class="index">
-    <cq-button />
+    <!-- <cq-button /> -->
+    <CqButton />
+    <!-- <AtButton type="primary" size="normal">
+      按钮文案
+    </AtButton> -->
     首页1111
     <!-- <text>{{ msg }}</text> -->
   </view>
 </template>
 
 <script>
-import CqButton  from '../../../lib/cq-button.js'
+// import CqButton  from '../../../lib/cq-button.js'
 import { ref } from 'vue'
-import './index.scss'
+// import './index.scss'
 
 export default {
-  components:{
-    CqButton
-  },
+  // components:{
+  //   CqButton
+  // },
   setup () {
     const msg = ref('Hello world')
     return {
@@ -23,6 +27,6 @@ export default {
   }
 }
 </script>
-// <style lang="scss">
-// @import './index.scss'
-// </style>
+<style lang="scss">
+@import './index.scss'
+</style>

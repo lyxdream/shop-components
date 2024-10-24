@@ -1,6 +1,7 @@
 node_modules/
 dist/
 lib/
+taro-ui-vue3/
 examplesDist/
 deploy_versions/
 .temp/

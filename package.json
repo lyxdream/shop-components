@@ -4,7 +4,7 @@
   "private": true,
   "description": "电商组件库",
   "main": "lib/cq-shop-components.js",
-  "source": "packages/index.ts",
+  "source": "src/index.ts",
   "typings": "types/index.d.ts",
   "files": [
     "dist",
@@ -49,7 +49,7 @@
   "peerDependencies": {
     "@tarojs/components": "3.6.35",
     "@tarojs/taro": "3.6.35",
-    "vue": "^3.2.24"
+    "vue": "^3.4.38"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
