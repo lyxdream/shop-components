@@ -4,7 +4,7 @@ const path = require('path')
 const baseWebpackConfig = require('./webpack.config.base')
 
 const componentsEntries = {
-  "cq-button":  path.resolve(__dirname, '../packages/cq-button/index.ts'),
+  "cq-button":  path.resolve(__dirname, '../packages/components/base/button/index.ts'),
 }
 
 module.exports = merge(baseWebpackConfig, {

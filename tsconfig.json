@@ -5,20 +5,24 @@
     "removeComments": false,
     "preserveConstEnums": true,
     "moduleResolution": "node",
-    "experimentalDecorators": true,
+    "experimentalDecorators": true,// 装饰器语法
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": false,
+    "forceConsistentCasingInFileNames": false,// 强制区分大小写
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strictNullChecks": true,
     "sourceMap": true,
+    "declaration": false, // 默认不要声明文件 
+    "emitDeclarationOnly": false, // 如果为 true，则只生成声明文件
     "baseUrl": ".",
     "rootDir": ".",
     "outDir": "lib",
     "jsx": "preserve",
     "allowJs": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true, // 解析json模块
+    "strict": true, // 是否启动严格模式
+    "skipLibCheck": true, // 跳过类库检测
     "types": [
       "node"
     ],
@@ -28,18 +32,16 @@
     ],
     "paths": {
       "@cq-shop-componets/*": [
-       "packages/*"
+       "packages/cq-shop-components/*"
       ]
     }
   },
   "include": [
-    "./examples", 
-    "./config",
-    "./types", 
-    "./build",
-    "./packages/**/*.ts",
-    "./packages/**/*.vue"
-, "packages/index.ts"     ],
+    "examples",
+    "packages/**/*.ts",
+    "packages/**/*.vue",
+    "types/*.ts"
+    ],
   "compileOnSave": true,
   "exclude": [
     "node_modules/*",

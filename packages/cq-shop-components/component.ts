@@ -1,7 +1,7 @@
 
 import type { Plugin } from 'vue'
 
-import CqButton from '../packages/cq-button'
+import CqButton from '../components/base/button'
 
 export default [
   CqButton

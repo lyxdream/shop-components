@@ -12,5 +12,3 @@ export const withInstall = <T extends Component>(comp: T) => {
   }
   return _comp as SFCWithInstall<T>
 }
-
-

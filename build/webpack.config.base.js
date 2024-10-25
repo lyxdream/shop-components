@@ -1,14 +1,15 @@
 const path = require('path');
 const Webpackbar = require('webpackbar');
 const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
+const GenerateTypesPlugin = require('./generateTypesPlugin.js');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
-  entry: path.resolve(__dirname, '../src/index.ts'), // 主入口文件
+  entry: path.resolve(__dirname, '../packages/cq-shop-components/index.ts'), // 主入口文件
   resolve: {
     extensions: ['.js','.ts', '.vue', '.json'], // 添加 .ts 扩展名
     alias: {
-      // '@packages': path.resolve(__dirname, '../packages')
+      '@cq-shop-componets': path.resolve(__dirname, 'packages/cq-shop-components')
     }
   },
   performance: {
@@ -78,7 +79,7 @@ module.exports = {
   plugins: [
     new Webpackbar(),
     new VueLoaderPlugin(),
-    // new BundleAnalyzerPlugin() // 添加此插件
+    new GenerateTypesPlugin() // 添加此插件
   ]
 };
 

@@ -4,7 +4,7 @@
   "private": true,
   "description": "电商组件库",
   "main": "lib/cq-shop-components.js",
-  "source": "src/index.ts",
+  "source": "packages/cq-shop-components/index.ts",
   "typings": "types/index.d.ts",
   "files": [
     "dist",
@@ -39,7 +39,9 @@
     "test": "jest",
     "build": "webpack --config ./build/webpack.config.prod.js",
     "components": "webpack --config ./build/webpack.config.component.js",
-    "build:all": "rimraf lib && npm run build && npm run components"
+    "build:all": "rimraf lib && npm run build && npm run components",
+     "build:types": "node ./build/build-types.ts",
+     "generate-types": "webpack --config ./build/webpack.config.base.js"
   },
   "browserslist": [
     "last 3 versions",
@@ -76,6 +78,7 @@
     "eslint-loader": "^4.0.2",
     "eslint-plugin-vue": "^8.0.0",
     "ts-loader": "^9.5.1",
+    "ts-morph": "^24.0.0",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.3.3",
     "vue-loader": "^17.4.2",
@@ -84,6 +87,7 @@
     "webpack-cli": "^5.1.4"
   },
   "engines": {
-    "node": ">=18.20.4"
+    "node": ">=18.20.4",
+    "vue": ">=3.4.0"
   }
 }
