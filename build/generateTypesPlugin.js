@@ -6,20 +6,20 @@ class GenerateTypesPlugin {
   }
 }
 const { glob } = require('fast-glob');
-const { parse, compileScript } = require('@vue/compiler-sfc');
+// const { parse, compileScript } = require('@vue/compiler-sfc');
 const { Project } =  require("ts-morph");
 // const type {SourceFile} = require('ts-morph');
 const fs = require('fs').promises;
 const path = require('path');
 // const consola = require('consola');
 // const chalk = require('chalk');
-let index = 1
+// let index = 1
 
 
 // 配置路径
 const projectRoot = path.resolve(__dirname, '../');
 const pkgRoot = path.resolve(projectRoot, 'packages');
-const compRoot = path.resolve(pkgRoot, 'components');
+// const compRoot = path.resolve(pkgRoot, 'components');
 const cqRoot = path.resolve(pkgRoot, 'cq-shop-components');
 const buildOutput = path.resolve(projectRoot, 'lib');
 const TSCONFIG_PATH = path.resolve(projectRoot, 'tsconfig.json');
@@ -112,8 +112,9 @@ async function generateTypesDefinitions() {
     ...cqPaths.map(async file => {
       const content = await fs.readFile(path.resolve(cqRoot, file), 'utf-8');
       console.log(path.resolve(pkgRoot, file),'==path.resolve(pkgRoot, file)')
+      const  outDir = path.resolve(buildOutput, 'types')
       sourceFiles.push(
-        project.createSourceFile(path.resolve(pkgRoot, file), content)
+        project.createSourceFile(path.resolve(outDir, file), content)
       );
 
     }),
@@ -140,9 +141,10 @@ async function generateTypesDefinitions() {
     const emitOutput = sourceFile.getEmitOutput();
     console.log(emitOutput,'==emitOutput')
     const emitFiles = emitOutput.getOutputFiles();
+    console.log(emitFiles,'==emitFiles')
     if (emitFiles.length === 0) {
       // throw new Error(`Emit no file: ${chalk.bold(relativePath)}`);
-      // console.log(`Emit no file: ${relativePath}`);
+      console.log(`Emit no file: ${relativePath}`);
     }
 
     const writeTasks = emitFiles.map(async outPutFile => {
