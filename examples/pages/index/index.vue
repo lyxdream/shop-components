@@ -1,7 +1,7 @@
 <template>
   <view class="index">
     <!-- <cq-button /> -->
-    <CqButton />
+    <cq-button />
     <!-- <AtButton type="primary" size="normal">
       按钮文案
     </AtButton> -->

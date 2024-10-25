@@ -1,6 +1,7 @@
 const path = require('path');
 const Webpackbar = require('webpackbar');
 const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: path.resolve(__dirname, '../src/index.ts'), // 主入口文件
@@ -11,31 +12,31 @@ module.exports = {
     }
   },
   performance: {
-    hints: false
+    hints: "warning"
   },
   module: {
     rules: [
       {
         test: /\.(js|ts|vue)$/,
         loader: 'eslint-loader',
-        exclude: /(node_modules|examples)/,
+        exclude: /node_modules|examples/,
         enforce: 'pre'
       },
       {
         test: /\.vue$/,
-        exclude: /(node_modules|examples)/,
+        exclude: /node_modules|examples/,
         loader: 'vue-loader'
       },
       {
         test: /\.js$/,
-        exclude: /(node_modules|examples)/,
+        exclude: /node_modules|examples/,
         use: {
           loader: 'babel-loader'
         }
       },
       {
         test: /\.ts$/,
-        exclude: /(node_modules|examples)/,
+        exclude: /node_modules|examples/,
         use: {
           loader: 'ts-loader',
           options: {
@@ -45,6 +46,7 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
+        exclude: /node_modules|examples/, // 确保排除 examples
         use: [
           'vue-style-loader',
           {
@@ -60,6 +62,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/,
+        exclude: /node_modules|examples/, // 确保排除 examples
         type: 'asset', // 使用 Webpack 5 的 asset 模块
         parser: {
           dataUrlCondition: {
@@ -74,7 +77,8 @@ module.exports = {
   },
   plugins: [
     new Webpackbar(),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    // new BundleAnalyzerPlugin() // 添加此插件
   ]
 };
 

@@ -3,14 +3,13 @@
     测试
   </view>
 </template>
-<script>
-export default {
+<script lang="ts" setup>
+defineOptions({
   name:"CqButton"
-}
+})
 </script>
 <style lang="scss">
 .base-button{
-  // background: #f00;
   color:#ff0;
 }
 </style>

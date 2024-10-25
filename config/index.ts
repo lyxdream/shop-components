@@ -21,6 +21,7 @@ export default defineConfig(async (merge, { command, mode }) => {
     outputRoot: `dist/${process.env.TARO_ENV}`,
     plugins: [],
     defineConstants: {
+
     },
     copy: {
       patterns: [
@@ -62,6 +63,8 @@ export default defineConfig(async (merge, { command, mode }) => {
         }
       },
       webpackChain(chain) {
+        // chain.plugin('analyzer')
+        //   .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
         // chain.resolve.alias
         //   .set('cq-shop-components$', path.resolve(__dirname, '../', 'lib/cq-shop-components.js'))
@@ -95,8 +98,8 @@ export default defineConfig(async (merge, { command, mode }) => {
       },
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
-        chain.resolve.alias
-          .set('cq-shop-components$', path.resolve(__dirname, '../', 'lib/cq-shop-components.js'))
+        // chain.resolve.alias
+        //   .set('cq-shop-components$', path.resolve(__dirname, '../', 'lib/cq-shop-components.js'))
       }
     }
   }
