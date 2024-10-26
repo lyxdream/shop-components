@@ -1,24 +1,18 @@
-class GenerateTypesPlugin {
-  apply(compiler) {
-    compiler.hooks.done.tap('GenerateTypesPlugin', async () => {
-      await generateTypesDefinitions();
-    });
-  }
-}
+
 const { glob } = require('fast-glob');
-// const { parse, compileScript } = require('@vue/compiler-sfc');
+const { parse, compileScript } = require('@vue/compiler-sfc');
 const { Project } =  require("ts-morph");
 const fs = require('fs').promises;
 const path = require('path');
 const consola = require('consola');
 const chalk = require('chalk');
-// let index = 1
+let index = 1
 
 
 // 配置路径
 const projectRoot = path.resolve(__dirname, '../');
 const pkgRoot = path.resolve(projectRoot, 'packages');
-// const compRoot = path.resolve(pkgRoot, 'components');
+const compRoot = path.resolve(pkgRoot, 'components');
 const cqRoot = path.resolve(pkgRoot, 'cq-shop-components');
 const buildOutput = path.resolve(projectRoot, 'lib');
 const TSCONFIG_PATH = path.resolve(projectRoot, 'tsconfig.json');
@@ -31,17 +25,13 @@ const excludeFiles = files => {
     path => !excludes.some(exclude => path.includes(exclude))
   );
 };
-
-
 // // 路径重写器
 // const pathRewriter = format => {
 //   return id => {
-//     id = id.replaceAll("@cq-shop-components", `cq-shop-components/${format}`);
+//     id = id.replaceAll("@cq-shop-components", `cq-shop-components`);
 //     return id;
 //   };
 // };
-
-
 async function generateTypesDefinitions() {
   const project = new Project({
     compilerOptions: {
@@ -61,13 +51,13 @@ async function generateTypesDefinitions() {
   const globAnyFile = '**/*.{js?(x),ts?(x),vue}';
 
   //单个组件
-  // const filePaths = excludeFiles(
-  //   await glob([globAnyFile, '!cq-shop-components/**/*'], {
-  //     cwd: compRoot,
-  //     onlyFiles: true,
-  //     absolute: true,
-  //   })
-  // );
+  const filePaths = excludeFiles(
+    await glob([globAnyFile, '!cq-shop-components/**/*'], {
+      cwd: compRoot,//设置当前工作目录为 compRoot
+      onlyFiles: true,//只匹配文件，不包括目录
+      absolute: true,//返回绝对路径而不是相对路径
+    })
+  );
 
   //总包
   const cqPaths = excludeFiles(
@@ -81,66 +71,59 @@ async function generateTypesDefinitions() {
   const sourceFiles = [];
   // 把 <script> 部分的内容提取出来进行解析
   await Promise.all([
-    // ...filePaths.map(async file => {
-    //   if (file.endsWith('.vue')) {
-    //     const content = await fs.readFile(file, 'utf8');
-    //     const sfc = parse(content);
-    //     const { script, scriptSetup } = sfc.descriptor;
-    //     if (script || scriptSetup) {
-    //       let content = script?.content ?? '';
-    //       if (scriptSetup) {
-    //         const compiled = compileScript(sfc.descriptor, {
-    //           id: `${index++}`
-    //         });
-    //         content += compiled.content;
-    //       }
-    //       const lang = scriptSetup?.lang || script?.lang || 'js';
-    //       const sourceFile = project.createSourceFile(
-    //         `${path.relative(process.cwd(), file)}.${lang}`,
-    //         content
-    //       );
-    //       sourceFiles.push(sourceFile);
-    //     }
-    //   } else if (file.endsWith('.ts')) {
-    //     const sourceFile = project.addSourceFileAtPath(file);
-    //     sourceFiles.push(sourceFile);
-    //   }
-    // }),
+    ...filePaths.map(async file => {
+      if (file.endsWith('.vue')) {
+        const content = await fs.readFile(file, 'utf8');
+        const sfc = parse(content);
+        const { script, scriptSetup } = sfc.descriptor;
+        if (script || scriptSetup) {
+          let content = script?.content ?? '';
+          if (scriptSetup) {
+            const compiled = compileScript(sfc.descriptor, {
+              id: `${index++}`
+            });
+            content += compiled.content;
+          }
+          const lang = scriptSetup?.lang || script?.lang || 'js';
+          // 生成从当前工作目录到文件的相对路径，并添加语言扩展名。
+          const sourceFilePath =  `${path.relative(process.cwd(), file)}.${lang}`
+          // file /Users/yinxia/Desktop/shop-components/packages/components/base/button/src/index.vue
+          // sourceFilePath packages/components/base/button/src/index.vue.ts
+          const sourceFile = project.createSourceFile(
+            sourceFilePath,
+            content
+          );
+          sourceFiles.push(sourceFile);
+        }
+      } else if (file.endsWith('.ts')) {
+        // /Users/yinxia/Desktop/shop-components/packages/components/base/button/index.ts
+        const sourceFile = project.addSourceFileAtPath(file);
+        sourceFiles.push(sourceFile);
+      }
+    }),
     ...cqPaths.map(async file => {
       const content = await fs.readFile(path.resolve(cqRoot, file), 'utf-8');
-      console.log(path.resolve(pkgRoot, file),'==path.resolve(pkgRoot, file)')
-      // const  outDir = path.resolve(buildOutput)
-      // sourceFiles.push(
-      //   project.createSourceFile(path.resolve(buildOutput, file), content)
-      // );
-      // /Users/yinxia/Desktop/shop-components/packages/index.ts
-      // D:\练习\练习代码库\picasso-plus\packages\index.ts
+      const sourceFilePath = path.resolve(pkgRoot, file)
+      //Users/yinxia/Desktop/shop-components/packages/index.ts
       sourceFiles.push(
-        project.createSourceFile(path.resolve(pkgRoot, file), content)
+        project.createSourceFile(sourceFilePath, content)
       );
 
     }),
   ]);
-
   //生成声明文件 不生成对应的 JavaScript 文件。
   await project.emit({
     emitOnlyDtsFiles: true,
   });
+  // sourceFiles.length  7  不包含util文件夹里面的
   const tasks = sourceFiles.map(async sourceFile => {
-    // console.log(sourceFile,'===sourceFile')
-    console.log(sourceFile.getFilePath(),'==sourceFile.getFilePath()')
+    // /Users/yinxia/Desktop/shop-components/packages/index.ts
     const relativePath = path.relative(pkgRoot, sourceFile.getFilePath());
-    console.log(relativePath,'==relativePath')
     consola.trace(chalk.yellow(`Generating definition for file: ${chalk.bold(relativePath)}`));
-    // console.log(`Emit no file: ${relativePath}`);
-
     const emitOutput = sourceFile.getEmitOutput();
-    console.log(emitOutput,'==emitOutput')
     const emitFiles = emitOutput.getOutputFiles();
-    console.log(emitFiles,'==emitFiles')
     if (emitFiles.length === 0) {
-      throw new Error(`Emit no file: ${chalk.bold(relativePath)}`);
-      // console.log(`Emit no file: ${relativePath}`);
+      throw new Error(`Emit no file: ${chalk.bold(relativePath)}`); //index.ts
     }
 
     const writeTasks = emitFiles.map(async outPutFile => {
@@ -164,13 +147,15 @@ async function generateTypesDefinitions() {
         )
       );
     });
-
     await Promise.all(writeTasks);
-
   });
   await Promise.all(tasks);
-
-  // console.log(sourceFiles,'==sourceFiles')
-
+}
+class GenerateTypesPlugin {
+  apply(compiler) {
+    compiler.hooks.done.tap('GenerateTypesPlugin', async () => {
+      await generateTypesDefinitions();
+    });
+  }
 }
 module.exports = GenerateTypesPlugin;
