@@ -4,6 +4,7 @@
     "module": "commonjs",
     "removeComments": false,
     "preserveConstEnums": true,
+    "esModuleInterop": true, // 支持es6,commonjs模块
     "moduleResolution": "node",
     "experimentalDecorators": true,// 装饰器语法
     "noImplicitAny": false,
@@ -15,14 +16,16 @@
     "sourceMap": true,
     "declaration": false, // 默认不要声明文件 
     "emitDeclarationOnly": false, // 如果为 true，则只生成声明文件
-    "baseUrl": ".",
-    "rootDir": ".",
-    "outDir": "lib",
+    "baseUrl": "./",
     "jsx": "preserve",
     "allowJs": true,
     "resolveJsonModule": true, // 解析json模块
     "strict": true, // 是否启动严格模式
     "skipLibCheck": true, // 跳过类库检测
+    "lib": [ // 编译时用的库
+      "ESNext",
+      "DOM"
+    ],
     "types": [
       "node"
     ],
@@ -31,9 +34,9 @@
       "types/*"
     ],
     "paths": {
-      "@cq-shop-componets/*": [
-       "packages/cq-shop-components/*"
-      ]
+      "@packages/*": ["packages/*"],
+      "@components/*": ["packages/components/*"],
+      "@cq-shop-components/*": ["packages/cq-shop-components/*"]
     }
   },
   "include": [

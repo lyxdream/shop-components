@@ -1,6 +1,13 @@
 import type { App } from 'vue'
 
-import Components from './component'
+import type { Plugin } from 'vue'
+
+import { CqButton } from '@components/index'
+
+const Components = [
+  CqButton
+] as Plugin[]
+
 const install = (app: App) => {
   Components.forEach(component => app.use(component));
 }

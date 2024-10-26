@@ -9,7 +9,9 @@ module.exports = {
   resolve: {
     extensions: ['.js','.ts', '.vue', '.json'], // 添加 .ts 扩展名
     alias: {
-      '@cq-shop-componets': path.resolve(__dirname, 'packages/cq-shop-components')
+      '@packages':path.resolve(__dirname, '../packages'),
+      '@components':path.resolve(__dirname, '../packages/components'),
+      '@cq-shop-componets': path.resolve(__dirname, '../packages/cq-shop-components')
     }
   },
   performance: {

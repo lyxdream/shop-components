@@ -8,11 +8,10 @@ class GenerateTypesPlugin {
 const { glob } = require('fast-glob');
 // const { parse, compileScript } = require('@vue/compiler-sfc');
 const { Project } =  require("ts-morph");
-// const type {SourceFile} = require('ts-morph');
 const fs = require('fs').promises;
 const path = require('path');
-// const consola = require('consola');
-// const chalk = require('chalk');
+const consola = require('consola');
+const chalk = require('chalk');
 // let index = 1
 
 
@@ -35,12 +34,12 @@ const excludeFiles = files => {
 
 
 // // 路径重写器
-const pathRewriter = format => {
-  return id => {
-    id = id.replaceAll("@cq-shop-components", `cq-shop-components/${format}`);
-    return id;
-  };
-};
+// const pathRewriter = format => {
+//   return id => {
+//     id = id.replaceAll("@cq-shop-components", `cq-shop-components/${format}`);
+//     return id;
+//   };
+// };
 
 
 async function generateTypesDefinitions() {
@@ -78,10 +77,8 @@ async function generateTypesDefinitions() {
     })
   );
 
-  // [ 'component.ts', 'index.ts' ]
-  console.log(cqPaths,'==cqPaths')
+  // [ 'index.ts' ]
   const sourceFiles = [];
-
   // 把 <script> 部分的内容提取出来进行解析
   await Promise.all([
     // ...filePaths.map(async file => {
@@ -112,30 +109,29 @@ async function generateTypesDefinitions() {
     ...cqPaths.map(async file => {
       const content = await fs.readFile(path.resolve(cqRoot, file), 'utf-8');
       console.log(path.resolve(pkgRoot, file),'==path.resolve(pkgRoot, file)')
-      const  outDir = path.resolve(buildOutput, 'types')
+      // const  outDir = path.resolve(buildOutput)
+      // sourceFiles.push(
+      //   project.createSourceFile(path.resolve(buildOutput, file), content)
+      // );
+      // /Users/yinxia/Desktop/shop-components/packages/index.ts
+      // D:\练习\练习代码库\picasso-plus\packages\index.ts
       sourceFiles.push(
-        project.createSourceFile(path.resolve(outDir, file), content)
+        project.createSourceFile(path.resolve(pkgRoot, file), content)
       );
 
     }),
   ]);
 
   //生成声明文件 不生成对应的 JavaScript 文件。
-  // await project.emit({
-  //   emitOnlyDtsFiles: true,
-  // });
-  try {
-    console.log("----")
-    await project.emit({ emitOnlyDtsFiles: true });
-  } catch (error) {
-    console.error('Compilation error:', error);
-  }
+  await project.emit({
+    emitOnlyDtsFiles: true,
+  });
   const tasks = sourceFiles.map(async sourceFile => {
-    console.log(sourceFile,'===sourceFile')
+    // console.log(sourceFile,'===sourceFile')
     console.log(sourceFile.getFilePath(),'==sourceFile.getFilePath()')
     const relativePath = path.relative(pkgRoot, sourceFile.getFilePath());
     console.log(relativePath,'==relativePath')
-    // consola.trace(chalk.yellow(`Generating definition for file: ${chalk.bold(relativePath)}`));
+    consola.trace(chalk.yellow(`Generating definition for file: ${chalk.bold(relativePath)}`));
     // console.log(`Emit no file: ${relativePath}`);
 
     const emitOutput = sourceFile.getEmitOutput();
@@ -143,20 +139,30 @@ async function generateTypesDefinitions() {
     const emitFiles = emitOutput.getOutputFiles();
     console.log(emitFiles,'==emitFiles')
     if (emitFiles.length === 0) {
-      // throw new Error(`Emit no file: ${chalk.bold(relativePath)}`);
-      console.log(`Emit no file: ${relativePath}`);
+      throw new Error(`Emit no file: ${chalk.bold(relativePath)}`);
+      // console.log(`Emit no file: ${relativePath}`);
     }
 
     const writeTasks = emitFiles.map(async outPutFile => {
-      const filePath = outPutFile.getFilePath();
-      await fs.mkdir(path.dirname(filePath), { recursive: true });
+      const filePath = outPutFile.getFilePath(); //生成d.ts文件
+      consola.success( chalk.green(
+        `filePath for file: ${chalk.bold(filePath)}`
+      ))
+      //  /Users/yinxia/Desktop/shop-components/lib/types/packages/index.d.ts
+      // /Users/yinxia/Desktop/shop-components/lib/types/index.d.ts
+      await fs.mkdir(path.dirname(filePath), {
+        recursive: true, //递归
+      });
       await fs.writeFile(
         filePath,
-        pathRewriter('es')(outPutFile.getText()),
+        outPutFile.getText(),
         'utf8'
       );
-      console.log(`Definition for file: ${relativePath}`);
-      // consola.success(chalk.green(`Definition for file: ${chalk.bold(relativePath)} generated`));
+      consola.success(
+        chalk.green(
+          `Definition for file: ${chalk.bold(relativePath)} generated`
+        )
+      );
     });
 
     await Promise.all(writeTasks);

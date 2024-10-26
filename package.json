@@ -40,8 +40,8 @@
     "build": "webpack --config ./build/webpack.config.prod.js",
     "components": "webpack --config ./build/webpack.config.component.js",
     "build:all": "rimraf lib && npm run build && npm run components",
-     "build:types": "node ./build/build-types.ts",
-     "generate-types": "webpack --config ./build/webpack.config.base.js"
+    "build:types": "node ./build/build-types.ts",
+    "generate-types": "webpack --config ./build/webpack.config.base.js"
   },
   "browserslist": [
     "last 3 versions",
@@ -72,6 +72,8 @@
     "@vue/babel-plugin-jsx": "^1.0.6",
     "@vue/compiler-sfc": "^3.0.0",
     "babel-preset-taro": "3.6.35",
+    "chalk": "4.1.2",
+    "consola": "^3.2.3",
     "css-loader": "^7.1.2",
     "eslint": "7.32.0",
     "eslint-config-taro": "3.6.35",
