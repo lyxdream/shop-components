@@ -1,13 +1,10 @@
-
-const { glob } = require('fast-glob');
-const { parse, compileScript } = require('@vue/compiler-sfc');
-const { Project } =  require("ts-morph");
-const fs = require('fs').promises;
 const path = require('path');
 const consola = require('consola');
 const chalk = require('chalk');
-let index = 1
-
+const fs = require('fs').promises;
+const { glob } = require('fast-glob');
+const { Project } =  require("ts-morph");
+const { parse, compileScript } = require('@vue/compiler-sfc')
 
 // 配置路径
 const projectRoot = path.resolve(__dirname, '../');
@@ -32,6 +29,8 @@ const excludeFiles = files => {
 //     return id;
 //   };
 // };
+
+
 async function generateTypesDefinitions() {
   const project = new Project({
     compilerOptions: {
@@ -69,6 +68,7 @@ async function generateTypesDefinitions() {
 
   // [ 'index.ts' ]
   const sourceFiles = [];
+  let index = 1
   // 把 <script> 部分的内容提取出来进行解析
   await Promise.all([
     ...filePaths.map(async file => {
