@@ -1,5 +1,7 @@
 const merge = require('webpack-merge');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const GenerateTypesPlugin = require('./generateTypesPlugin.js');
 const baseWebpackConfig = require('./webpack.config.base');
 
 module.exports = merge(baseWebpackConfig, {
@@ -24,5 +26,12 @@ module.exports = merge(baseWebpackConfig, {
     filename: 'cq-shop-components.js',
     library: 'cq-shop-components',
     libraryTarget: 'umd'
-  }
+  },
+  plugins: [
+    new GenerateTypesPlugin(), // 添加此插件
+    new MiniCssExtractPlugin({
+      filename: 'style/wm-shop-components.css',
+      chunkFilename: 'style/wm-shop-components.css'
+    })
+  ]
 });

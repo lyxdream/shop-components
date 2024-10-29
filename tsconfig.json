@@ -14,9 +14,10 @@
     "noUnusedParameters": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "declaration": true, // 默认不要声明文件 
+    "declaration": false, // 默认不要声明文件 
+    "emitDeclarationOnly": false, // 如果为 true，则只生成声明文件
     // "emitDeclarationOnly": true, // 如果为 true，则只生成声明文件
-    "outDir": "./types",  // 输出目录
+    // "outDir": "./types",  // 输出目录
     "baseUrl": "./",
     "jsx": "preserve",
     "allowJs": true,
@@ -41,7 +42,6 @@
     }
   },
   "include": [
-    "examples",
     "packages/**/*.ts",
     "packages/**/*.vue",
     "types/*.ts"

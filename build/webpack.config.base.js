@@ -1,7 +1,7 @@
 const path = require('path');
 const Webpackbar = require('webpackbar');
 const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
-const GenerateTypesPlugin = require('./generateTypesPlugin.js');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
@@ -51,7 +51,7 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/,
         exclude: /node_modules|examples/, // 确保排除 examples
         use: [
-          'vue-style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -80,8 +80,7 @@ module.exports = {
   },
   plugins: [
     new Webpackbar(),
-    new VueLoaderPlugin(),
-    new GenerateTypesPlugin() // 添加此插件
+    new VueLoaderPlugin()
   ]
 };
 

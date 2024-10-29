@@ -1,6 +1,7 @@
 
 import { createApp } from 'vue'
 import './app.scss'
+import '../lib/wm-shop-components.css'
 // import '../taro-ui-vue3/dist/style/index.scss'
 // import { createUI } from '../taro-ui-vue3/dist/index.js'
 // console.log(createUI,'==createUI')

@@ -1,5 +1,6 @@
 const merge = require('webpack-merge')
 const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const baseWebpackConfig = require('./webpack.config.base')
 
@@ -30,5 +31,11 @@ module.exports = merge(baseWebpackConfig, {
       commonjs2: 'taro',
       amd: 'taro'
     }
-  }
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'style/components/[name].css', // 每个入口点生成一个单独的 CSS 文件
+      chunkFilename: 'style/components/[id].css', // 对于按需加载的 chunk 生成的 CSS 文件名
+    })
+  ]
 })
