@@ -1,5 +1,5 @@
 // @use 多次引入只会打包一次
-@use "./mixins/config.scss" as *;
+@import "./mixins/config.scss";
 
 //生成带有命名空间的变量名
 @function namespace-var($name) {

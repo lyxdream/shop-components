@@ -10,7 +10,8 @@ defineOptions({
 })
 </script>
 <style lang="scss">
-.base-button{
+@import "./../../../../theme-chalk/index.scss" ;
+.cq-button{
   color:#ff0;
   text{
     color:#f0f;

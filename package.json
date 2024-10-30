@@ -35,11 +35,11 @@
     "build:h5": "taro build --type h5",
     "dev:h5": "npm run build:h5 -- --watch",
     "test": "jest",
+    "typecheck": "vue-tsc --noEmit",
+    "build:types": "node ./build/generateTypesDefinitions.js",
     "build": "webpack --config ./build/webpack.config.prod.js",
     "components": "webpack --config ./build/webpack.config.component.js",
-    "build:all": "rimraf dist && npm run build && npm run components && npm run build:types",
-    "typecheck": "vue-tsc --noEmit",
-    "build:types": "node ./build/generateTypesDefinitions.js"
+    "build:all": "rimraf dist && npm run build && npm run components && npm run build:types"
   },
   "browserslist": [
     "last 3 versions",

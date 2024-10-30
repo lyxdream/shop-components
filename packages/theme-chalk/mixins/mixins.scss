@@ -1,5 +1,7 @@
 // // @use 多次引入只会打包一次
-@use "./config.scss" as *;
+// @use "./config.scss" as *;
+@import "./config.scss";
+// @import "../mixins/config.scss";
 // .cq-button{}
 @mixin b($block) {
   $B: $namespace + "-" + $block;
