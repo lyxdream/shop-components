@@ -12,10 +12,10 @@ module.exports = merge(baseWebpackConfig, {
   mode: 'production',
   entry: componentsEntries,
   output: {
-    path: path.resolve(process.cwd(), './lib'),
+    path: path.resolve(process.cwd(), './dist'),
     publicPath: '/',
-    filename: '[name].js',
-    chunkFilename: '[id].js',
+    filename: 'lib/[name].js',
+    chunkFilename: 'lib/[id].js',
     libraryTarget: 'commonjs2'
   },
   externals: {
