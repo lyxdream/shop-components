@@ -1,0 +1,15 @@
+input,
+button,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+input,
+button,
+textarea,
+[class*='cq-'] {
+  &:focus {
+    outline: none;
+  }
+}

@@ -1,0 +1,86 @@
+// @use 多次引入只会打包一次
+@use "./mixins/config.scss" as *;
+
+//生成带有命名空间的变量名
+@function namespace-var($name) {
+  @return unquote("#{$namespace}-#{$name}");
+}
+
+:root,
+:host {
+  #{namespace-var('black')}: #000; //--cq-black: #000;
+  #{namespace-var('black')}: #000;
+  #{namespace-var('white')}: #fff;
+  #{namespace-var('gray-1')}: #f7f8fa;
+  #{namespace-var('gray-2')}: #f2f3f5;
+  #{namespace-var('gray-3')}: #ebedf0;
+  #{namespace-var('gray-4')}: #dcdee0;
+  #{namespace-var('gray-5')}: #c8c9cc;
+  #{namespace-var('gray-6')}: #969799;
+  #{namespace-var('gray-7')}: #646566;
+  #{namespace-var('gray-8')}: #323233;
+  #{namespace-var('red')}: #ee0a24;
+  #{namespace-var('blue')}: #1989fa;
+  #{namespace-var('orange')}: #ff976a;
+  #{namespace-var('orange-dark')}: #ed6a0c;
+  #{namespace-var('orange-light')}: #fffbe8;
+  #{namespace-var('green')}: #07c160;
+
+  // 渐变颜色
+  #{namespace-var('gradient-red')}: linear-gradient(to right, #ff6034, #ee0a24);
+  #{namespace-var('gradient-orange')}: linear-gradient(to right, #ffd01e, #ff8917);
+
+  // 组件色
+  #{namespace-var('primary-color')}: var(#{namespace-var('blue')});
+  #{namespace-var('success-color')}: var(#{namespace-var('green')});
+  #{namespace-var('danger-color')}: var(#{namespace-var('red')});
+  #{namespace-var('warning-color')}: var(#{namespace-var('orange')});
+  #{namespace-var('text-color')}: var(#{namespace-var('gray-8')});
+  #{namespace-var('text-color-2')}: var(#{namespace-var('gray-6')});
+  #{namespace-var('text-color-3')}: var(#{namespace-var('gray-5')});
+  #{namespace-var('active-color')}: var(#{namespace-var('gray-2')});
+  #{namespace-var('active-opacity')}: 0.6;
+  #{namespace-var('disabled-opacity')}: 0.5;
+  #{namespace-var('background')}: var(#{namespace-var('gray-1')});
+  #{namespace-var('background-2')}: var(#{namespace-var('white')});
+  #{namespace-var('background-3')}: var(#{namespace-var('white')});
+
+  // Padding
+  #{namespace-var('padding-base')}: 4px;
+  #{namespace-var('padding-xs')}: 8px;
+  #{namespace-var('padding-sm')}: 12px;
+  #{namespace-var('padding-md')}: 16px;
+  #{namespace-var('padding-lg')}: 24px;
+  #{namespace-var('padding-xl')}: 32px;
+
+  // Font
+  #{namespace-var('font-bold')}: 600;
+  #{namespace-var('font-size-xs')}: 10px;
+  #{namespace-var('font-size-sm')}: 12px;
+  #{namespace-var('font-size-md')}: 14px;
+  #{namespace-var('font-size-lg')}: 16px;
+  #{namespace-var('line-height-xs')}: 14px;
+  #{namespace-var('line-height-sm')}: 18px;
+  #{namespace-var('line-height-md')}: 20px;
+  #{namespace-var('line-height-lg')}: 22px;
+  /* stylelint-disable */
+  #{namespace-var('base-font')}: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+    Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui',
+    'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  #{namespace-var('price-font')}: avenir-heavy, 'PingFang SC', helvetica neue, arial,
+    sans-serif;
+
+  // Animation
+  #{namespace-var('duration-base')}: 0.3s;
+  #{namespace-var('duration-fast')}: 0.2s;
+  #{namespace-var('ease-out')}: ease-out;
+  #{namespace-var('ease-in')}: ease-in;
+
+  // Border
+  #{namespace-var('border-color')}: var(#{namespace-var('gray-3')});
+  #{namespace-var('border-width')}: 1px;
+  #{namespace-var('radius-sm')}: 2px;
+  #{namespace-var('radius-md')}: 4px;
+  #{namespace-var('radius-lg')}: 8px;
+  #{namespace-var('radius-max')}: 999px;
+}
