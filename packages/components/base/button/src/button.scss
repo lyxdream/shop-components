@@ -1,0 +1,13 @@
+
+// @use "./../../../../theme-chalk/index.scss" as *;
+@import "./../../../../theme-chalk/index.scss";
+
+// .cq-button{
+//   color:var(--cq-orange);
+// }
+@include b(button) {
+  color:$--color-primary;
+  text{
+    color:$--color-success;
+  }
+}

@@ -1,0 +1,6 @@
+// @use "./../../../../theme-chalk/index.scss" as *;
+@import "./../../../../theme-chalk/index.scss";
+.cq-checkbox{
+  color:var(--cq-green);
+  // color:$--color-danger;
+}

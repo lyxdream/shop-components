@@ -88,7 +88,7 @@
         "registeredComponentsOnly": false,
         "ignores": [
           // "/^van-/"
-          "/(swiper|swiper-item|scroll-view|web-view|movable-area|movable-view|rich-text|picker|cq-button)/" // 忽略小程序组件
+          "/(swiper|swiper-item|scroll-view|web-view|movable-area|movable-view|rich-text|picker|cq-button|cq-checkbox)/" // 忽略小程序组件
         ]
       }
     ],

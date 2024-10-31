@@ -1,5 +1,5 @@
 {
-  "miniprogramRoot": "dist/weapp/",
+  "miniprogramRoot": "examplesDist/weapp/",
   "projectname": "cq-shop-components",
   "description": "电商组件库",
   "appid": "wx6fc6ac299c8f3bec",
@@ -18,7 +18,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "3.6.2",
-  "srcMiniprogramRoot": "dist/weapp/",
+  "srcMiniprogramRoot": "examplesDist/weapp/",
   "packOptions": {
     "ignore": [],
     "include": []

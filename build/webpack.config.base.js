@@ -17,6 +17,7 @@ module.exports = {
   performance: {
     hints: "warning"
   },
+
   module: {
     rules: [
       {
@@ -52,6 +53,9 @@ module.exports = {
         exclude: /node_modules|examples/, // 确保排除 examples
         use: [
           MiniCssExtractPlugin.loader,
+          // {
+          //   loader: 'vue-style-loader'
+          // },
           {
             loader: 'css-loader',
             options: {
@@ -60,7 +64,13 @@ module.exports = {
             }
           },
           'postcss-loader',
-          'sass-loader'
+          'sass-loader',
+          // {
+          //   loader: 'sass-resources-loader',
+          //   options: {
+          //     resources:  path.resolve(__dirname, '../packages/theme-chalk/index.scss') ,
+          //   },
+          // }
         ]
       },
       {

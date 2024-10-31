@@ -2,10 +2,11 @@ import type { App } from 'vue'
 
 import type { Plugin } from 'vue'
 
-import { CqButton } from '@components/index'
+import { CqButton,CqCheckbox } from '@components/index'
 
 const Components = [
-  CqButton
+  CqButton,
+  CqCheckbox
 ] as Plugin[]
 
 const install = (app: App) => {

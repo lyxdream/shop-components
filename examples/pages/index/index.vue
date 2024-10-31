@@ -2,6 +2,7 @@
   <view class="index">
     <!-- <cq-button /> -->
     <cq-button />
+    <cq-checkbox />
     <!-- <AtButton type="primary" size="normal">
       按钮文案
     </AtButton> -->

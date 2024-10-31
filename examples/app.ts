@@ -1,11 +1,12 @@
 
 import { createApp } from 'vue'
 import './app.scss'
-import '../lib/wm-shop-components.css'
+// import '../dist/style/wm-shop-components.css'
+// import CqShopComponents from '../dist/cq-shop-components.js'
 // import '../taro-ui-vue3/dist/style/index.scss'
 // import { createUI } from '../taro-ui-vue3/dist/index.js'
 // console.log(createUI,'==createUI')
-// import CqShopComponents from '../lib/cq-shop-components.js'
+
 // import CqShopComponents from '@cq-shop-components'
 // console.log(CqShopComponents,'==CqShopComponents')
 // import CqButton from '../lib/cq-Button.js'
