@@ -1,7 +1,14 @@
-@import './mixins/config.scss';
-@import './var.scss';
-@import './normalize.scss';
-@import './mixins/animation.scss';
-@import './mixins/mixins.scss'; 
-@import './mixins/animation.scss'; 
-@import './mixins/utils.scss';
+// @import './mixins/config.scss';
+// @import './var.scss';
+// @import './normalize.scss';
+// @import './mixins/animation.scss';
+// @import './mixins/mixins.scss'; 
+// @import './mixins/utils.scss';
+
+@forward 'var';
+@forward 'normalize';
+// forward mixins
+@forward 'mixins/config';
+@forward 'mixins/mixins';
+@forward 'mixins/utils';
+

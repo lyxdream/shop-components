@@ -15,10 +15,10 @@
     "strictNullChecks": true,
     "sourceMap": true,
     "declaration": false, // 默认不要声明文件 
-    "emitDeclarationOnly": false, // 如果为 true，则只生成声明文件
-    // "emitDeclarationOnly": true, // 如果为 true，则只生成声明文件
-    // "outDir": "./types",  // 输出目录
     "baseUrl": "./",
+    "rootDir": "./",  
+    // "outDir": "./dist/lib",  // 输出目录
+    // "declarationDir": "./dist/types",
     "jsx": "preserve",
     "allowJs": true,
     "resolveJsonModule": true, // 解析json模块
@@ -42,6 +42,7 @@
     }
   },
   "include": [
+    "examples/",
     "packages/**/*.ts",
     "packages/**/*.vue",
     "types/*.ts"

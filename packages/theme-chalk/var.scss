@@ -1,17 +1,18 @@
 // @use 多次引入只会打包一次
-@import "./mixins/config.scss";
+// @import "./mixins/config.scss";
+@use "./mixins/config.scss" as *;
 
 // //生成带有命名空间的变量名
 // @function namespace-var($name) {
 //   @return unquote("#{$namespace}-#{$name}");
 // }
 
-$--color-primary: #409eff;
-$--color-black: #000000;
-$--color-success: #67c23a;
-$--color-warning: #e6a23c;
-$--color-danger: #f56c6c;
-$--color-info: #909399;
+// $--color-primary: #409eff;
+// $--color-black: #000000;
+// $--color-success: #67c23a;
+// $--color-warning: #e6a23c;
+// $--color-danger: #f56c6c;
+// $--color-info: #909399;
 
 :root,
 :host {

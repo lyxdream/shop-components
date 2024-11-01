@@ -36,9 +36,10 @@
     "dev:h5": "npm run build:h5 -- --watch",
     "test": "jest",
     "typecheck": "vue-tsc --noEmit",
-    "build:types": "node ./build/generateTypesDefinitions.js",
-    "build": "webpack --config ./build/webpack.config.prod.js",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly --declarationDir dist/types",
+    "build:types1": "ts-node ./build/generateTypesDefinitions.ts",
     "components": "webpack --config ./build/webpack.config.component.js",
+    "build": "webpack --config ./build/webpack.config.prod.js",
     "build:all": "rimraf dist && npm run build && npm run components && npm run build:types"
   },
   "browserslist": [
@@ -82,7 +83,6 @@
     "eslint-loader": "^4.0.2",
     "eslint-plugin-vue": "^8.0.0",
     "mini-css-extract-plugin": "^2.9.1",
-    "postcss-custom-properties": "^14.0.3",
     "postcss-discard-duplicates": "^7.0.1",
     "postcss-loader": "^8.1.1",
     "sass-loader": "^16.0.2",
