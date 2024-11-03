@@ -1,8 +1,8 @@
 
 import { createApp } from 'vue'
 import './app.scss'
-// import '../dist/style/wm-shop-components.css'
-// import CqShopComponents from '../dist/cq-shop-components.js'
+import '../dist/style/wm-shop-components.css'
+import CqShopComponents from '../dist/cq-shop-components.js'
 // import '../taro-ui-vue3/dist/style/index.scss'
 // import { createUI } from '../taro-ui-vue3/dist/index.js'
 // console.log(createUI,'==createUI')
@@ -27,7 +27,7 @@ const App = createApp({
 //   AtButton,
 // })
 // App.use(tuv3)
-// App.use(CqShopComponents)
+App.use(CqShopComponents)
 // App.use(CqButton)
 export default App
 
