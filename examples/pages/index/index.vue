@@ -1,13 +1,8 @@
 <template>
   <view class="index">
-    <!-- <cq-button /> -->
     <cq-button />
     <cq-checkbox />
-    <!-- <AtButton type="primary" size="normal">
-      按钮文案
-    </AtButton> -->
-    首页1111
-    <!-- <text>{{ msg }}</text> -->
+    <text>{{ msg }}</text>
   </view>
 </template>
 

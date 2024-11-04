@@ -42,7 +42,7 @@
     }
   },
   "include": [
-    "examples/",
+    // "examples/",
     "packages/**/*.ts",
     "packages/**/*.vue",
     "global.d.ts"

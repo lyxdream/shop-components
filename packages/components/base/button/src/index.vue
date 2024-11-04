@@ -1,7 +1,6 @@
 <template>
   <view class="cq-button">
-    测试
-    <text>hahhh1</text>
+    按钮<text>文本内容</text>
   </view>
 </template>
 <script lang="ts" setup>

@@ -1,6 +1,6 @@
 <template>
   <view class="cq-checkbox">
-    cq-checkbox
+    多选框cq-checkbox
   </view>
 </template>
 <script lang="ts" setup>
