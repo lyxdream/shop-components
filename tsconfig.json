@@ -45,7 +45,7 @@
     "examples/",
     "packages/**/*.ts",
     "packages/**/*.vue",
-    "types/*.ts"
+    "global.d.ts"
     ],
   "compileOnSave": true,
   "exclude": [
