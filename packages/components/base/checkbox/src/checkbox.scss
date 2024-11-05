@@ -1,6 +1,7 @@
 // @use "./../../../../theme-chalk/index.scss" as *;
 // @import "./../../../../theme-chalk/index.scss";
-@use "../../../../theme-chalk/index.scss" as *;
+@use "../../../../theme-chalk/var.scss" as *;
+// :root,page{--cq-orange:#ff976a;--cq-green:#07c160}
 .cq-checkbox{
   color:var(--cq-green);
   // color:$--color-danger;

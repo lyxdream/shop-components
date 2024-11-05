@@ -2,7 +2,7 @@ const merge = require('webpack-merge');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const baseWebpackConfig = require('./webpack.config.base');
-// const RemoveDuplicateRootHostPlugin = require('./RemoveDuplicateRootHostPlugin');
+const RemoveDuplicateRootHostPlugin = require('./removeDuplicateRootHostPlugin');
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
@@ -32,6 +32,6 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'style/wm-shop-components.css',
       chunkFilename: 'style/wm-shop-components.css'
     }),
-    // new RemoveDuplicateRootHostPlugin()
+    new RemoveDuplicateRootHostPlugin()
   ]
 });

@@ -84,6 +84,7 @@
     "eslint-loader": "^4.0.2",
     "eslint-plugin-vue": "^8.0.0",
     "mini-css-extract-plugin": "^2.9.1",
+    "postcss-custom-properties": "8.0.6",
     "postcss-discard-duplicates": "^7.0.1",
     "postcss-import": "^16.1.0",
     "postcss-loader": "^8.1.1",

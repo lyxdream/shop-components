@@ -2,6 +2,8 @@ const path = require('path');
 const Webpackbar = require('webpackbar');
 const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const postcssCustomProperties = require('postcss-custom-properties');
+const postcssImport = require("postcss-import")
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
@@ -63,7 +65,33 @@ module.exports = {
               modules: false // 如果需要 CSS 模块，可以设置为 true
             }
           },
-          'postcss-loader',
+          // 'postcss-loader',
+          { 
+              loader: 'postcss-loader', 
+              options: {
+              postcssOptions: {
+                plugins: [
+                  postcssImport({
+                    path: [path.resolve(__dirname, '../packages/theme-chalk/var.scss')] // 这里的路径需要指向你的CSS文件所在目录
+                  }),
+                  postcssCustomProperties({
+                    preserve: false
+                  })
+                ]
+              }
+
+            } 
+          },
+        //   options: {
+        //     postcssOptions: {
+        //         plugins: [
+        //             //简写形式
+        //             'postcss-preset-env'
+        //             // require('autoprefixer'),
+        //             // require('postcss-preset-env')
+        //         ]
+        //     }
+        // }
           'sass-loader',
           // {
           //   loader: 'sass-resources-loader',
