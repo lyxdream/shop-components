@@ -4,7 +4,6 @@
   </view>
 </template>
 <script lang="ts" setup>
-// import "./checkbox.scss" ;
 defineOptions({
   name:"CqCheckbox"
 })
