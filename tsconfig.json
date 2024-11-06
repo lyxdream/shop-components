@@ -37,16 +37,17 @@
     ],
     "paths": {
       "@packages/*": ["packages/*"],
-      "@components/*": ["packages/components/*"],
-      "@cq-shop-components/*": ["packages/cq-shop-components/*"]
+      "@src/*": ["src/*"]
     }
   },
   "include": [
     // "examples/",
     "packages/**/*.ts",
     "packages/**/*.vue",
+    "src/**/*.ts",
+    "src/**/*.vue",
     "global.d.ts"
-    ],
+, "typings/shims-vue.d.ts"    ],
   "compileOnSave": true,
   "exclude": [
     "node_modules/*",

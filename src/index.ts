@@ -2,7 +2,8 @@ import type { App } from 'vue'
 
 import type { Plugin } from 'vue'
 
-import { CqButton,CqCheckbox } from '@components/index'
+import { CqButton,CqCheckbox } from '@packages/index'
+
 
 const Components = [
   CqButton,

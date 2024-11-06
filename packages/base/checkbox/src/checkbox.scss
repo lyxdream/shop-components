@@ -1,0 +1,6 @@
+
+// @import "./../../../../style/index.scss";
+@use "../../../../src/style/var.scss" as *;
+.cq-checkbox{
+  color:var(--cq-green);
+}

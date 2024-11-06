@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "电商组件库",
-  "main": "dist/lib/cq-shop-components.js",
-  "source": "packages/cq-shop-components/index.ts",
-  "typings": "dist/lib/types/index.d.ts",
+  "main": "dist/cq-shop-components.js",
+  "source": "src/index.ts",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],

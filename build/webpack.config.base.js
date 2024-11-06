@@ -7,13 +7,12 @@ const postcssImport = require("postcss-import")
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
-  entry: path.resolve(__dirname, '../packages/cq-shop-components/index.ts'), // 主入口文件
+  entry: path.resolve(__dirname, '../src/index.ts'), // 主入口文件
   resolve: {
     extensions: ['.js','.ts', '.vue', '.json'], // 添加 .ts 扩展名
     alias: {
       '@packages':path.resolve(__dirname, '../packages'),
-      '@components':path.resolve(__dirname, '../packages/components'),
-      '@cq-shop-componets': path.resolve(__dirname, '../packages/cq-shop-components')
+      '@src': path.resolve(__dirname, '../src')
     }
   },
   performance: {
@@ -72,7 +71,7 @@ module.exports = {
               postcssOptions: {
                 plugins: [
                   postcssImport({
-                    path: [path.resolve(__dirname, '../packages/theme-chalk/var.scss')] // 这里的路径需要指向你的CSS文件所在目录
+                    path: [path.resolve(__dirname, '../packages/style/var.scss')] // 这里的路径需要指向你的CSS文件所在目录
                   }),
                   postcssCustomProperties({
                     preserve: false
@@ -96,7 +95,7 @@ module.exports = {
           // {
           //   loader: 'sass-resources-loader',
           //   options: {
-          //     resources:  path.resolve(__dirname, '../packages/theme-chalk/index.scss') ,
+          //     resources:  path.resolve(__dirname, '../packages/style/index.scss') ,
           //   },
           // }
         ]

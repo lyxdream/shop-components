@@ -5,8 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const baseWebpackConfig = require('./webpack.config.base')
 
 const componentsEntries = {
-  "cq-button":  path.resolve(__dirname, '../packages/components/base/button/index.ts'),
-  "cq-checkbox":  path.resolve(__dirname, '../packages/components/base/checkbox/index.ts'),
+  "cq-button":  path.resolve(__dirname, '../packages/base/button/index.ts'),
+  "cq-checkbox":  path.resolve(__dirname, '../packages/base/checkbox/index.ts'),
 }
 
 module.exports = merge(baseWebpackConfig, {
